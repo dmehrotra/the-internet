@@ -1,7 +1,7 @@
 # The Internet
 Can I rebuild the internet on a local scale with an eye towards the community?  
 ## Description
-We take internet infrastructure for granted.  Most of us don't understand it, and as such we have no idea how to leverage it for activism.  I'm interested in leveraging internet infrastructure to explore issues about network control and privacy.  Can we distribute information without relying on ISPs, ad networks, and government snoops.  
+We take internet infrastructure for granted.  Most of us don't understand it, and as such we have no idea how to leverage it.  I'm interested in building rebuilding internet infrastructure from scratch and on a small scale to explore issues about network control and privacy.  Can we distribute information without relying on ISPs, ad networks, and government snoops.  
 ## What?
 A community network where users can upload "web pages" that are only visible to the local network.  A fully offline system where people can publish content that will be shared with only the people in their network.  the content will be in the form of a webpage and the combined result of its usage will be an intranet full of web pages, complete with URLs, and published by members of the network. 
 
