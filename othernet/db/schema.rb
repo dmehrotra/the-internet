@@ -16,19 +16,9 @@ ActiveRecord::Schema.define(version: 20170303211444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "roles", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "roles_spuds", id: false, force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "spud_id"
-  end
-
-  create_table "spuds", force: :cascade do |t|
-    t.string   "spudname",               default: "", null: false
+  create_table "anothers", force: :cascade do |t|
+    t.string   "another_name",           default: "", null: false
+    t.string   "email"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -42,11 +32,29 @@ ActiveRecord::Schema.define(version: 20170303211444) do
     t.datetime "updated_at"
   end
 
-  add_index "spuds", ["reset_password_token"], name: "index_spuds_on_reset_password_token", unique: true, using: :btree
-  add_index "spuds", ["spudname"], name: "index_spuds_on_spudname", unique: true, using: :btree
+  add_index "anothers", ["another_name"], name: "index_anothers_on_another_name", unique: true, using: :btree
+  add_index "anothers", ["reset_password_token"], name: "index_anothers_on_reset_password_token", unique: true, using: :btree
+
+  create_table "anothers_roles", id: false, force: :cascade do |t|
+    t.integer "role_id"
+    t.integer "another_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "webpages", force: :cascade do |t|
-    t.integer  "spud_id"
+    t.integer  "another_id"
+    t.integer  "type_id"
     t.text     "html"
     t.string   "url"
     t.datetime "created_at"

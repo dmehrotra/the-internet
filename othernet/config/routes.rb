@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :spuds
+
+  devise_for :anothers, path:'/',:path_names => {:sign_in => 'login', :sign_out => 'logout'},:controllers => { :registrations => "anothers/registrations", :sessions => "anothers/sessions"}
+
+  get "/lodge" => 'lodge/home#index', as:"lodge"
+  namespace :lodge do
+    resources :webpages
+    resources :home, only: [:index, :create, :update, :destroy]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

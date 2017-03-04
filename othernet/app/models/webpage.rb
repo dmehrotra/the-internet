@@ -1,9 +1,10 @@
 class Webpage < ActiveRecord::Base
 
-  belongs_to :spud,
+  belongs_to :another,
   	inverse_of: :webpages
-
-  validates_presence_of :spud_id
+  belongs_to :type,
+    inverse_of: :webpages
+  validates_presence_of :another_id
 
   
 end

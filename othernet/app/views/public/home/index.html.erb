@@ -1,8 +1,8 @@
-<% if spud_signed_in? %>
-  Logged in as <strong><%= current_spud.email %></strong>.
-  <%= link_to 'Edit profile', edit_spud_registration_path %> |
-  <%= link_to "Logout", destroy_spud_session_path, method: :delete %>
+<% if another_signed_in? %>
+  Logged in as <strong><%= current_another.another_name %></strong>.
+  <%= link_to 'Edit profile', edit_another_registration_path %> |
+  <%= link_to "Logout", destroy_another_session_path, method: :delete %>
 <% else %>
-  <%= link_to "Sign up", new_spud_registration_path %> |
-  <%= link_to "Login", new_spud_session_path %>
+  <%= link_to "Sign up", new_another_registration_path %> |
+  <%= link_to "Login", new_another_session_path %>
 <% end %>

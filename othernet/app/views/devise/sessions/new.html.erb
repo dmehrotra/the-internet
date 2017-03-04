@@ -2,8 +2,8 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :spudname %><br />
-    <%= f.email_field :spudname, autofocus: true %>
+    <%= f.label :another_name %><br />
+    <%= f.text_field :another_name, autofocus: true %>
   </div>
 
   <div class="field">
