@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get "/lodge" => 'lodge/home#index', as:"lodge"
   namespace :lodge do
-    resources :webpages
+    resources :webthings, as: "webthings"
     resources :home, only: [:index, :create, :update, :destroy]
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,4 @@
+<%= simple_form_for @webpage, url: lodge_webthings_path do |f| %>
+  <%= f.input :type_id, collection: Type.all, include_blank: false %>
+  <%= submit_tag 'Next', :step => 'one'  %>
+<% end %>

@@ -1,0 +1,24 @@
+
+
+<%= simple_form_for @webpage, url: url do |f| %>
+	<% form_fields.each do |field|%>
+		<% if field.type == 'hidden' %>
+			<%= f.input field.attribute, as: :hidden %>
+		<%end%>
+		<% if field.type == 'text' %>
+			<%= f.input field.attribute, required: false %>
+		<%end%>
+
+		<% if field.type == 'file_field' %>
+		<%=@webpage.type.name%>
+			<%= f.file_field field.attribute %>
+		<%end%>
+
+	<%end%>
+	<%= submit_tag 'Save', class: "btn btn-default" %>
+	<%= submit_tag 'Save and Preview', :name => 'preview', class: "btn btn-default" %>
+	<% if edit %>
+		<%= link_to "delete", {:controller => :webpages, :action => 'destroy', :id => @webpage.id }, :method => :delete, class: "btn btn-danger" %>
+	<%end%>
+
+<%end%>
