@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :anothers, path:'/',:path_names => {:sign_in => 'login', :sign_out => 'logout'},:controllers => { :registrations => "anothers/registrations", :sessions => "anothers/sessions"}
+  devise_for :neighbors, path:'/',:path_names => {:sign_in => 'login', :sign_out => 'logout'},:controllers => { :registrations => "neighbors/registrations", :sessions => "neighbors/sessions"}
 
   get "/lodge" => 'lodge/home#index', as:"lodge"
   namespace :lodge do

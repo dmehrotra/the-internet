@@ -6,12 +6,12 @@ module Lodge
   		
   	end
     def show
-      file = @current_another.webpages.find(params[:id]).things.first.file.path
-      extension = @current_another.webpages.find(params[:id]).things.first.file.file.extension
+      file = @current_neighbor.webpages.find(params[:id]).things.first.file.path
+      extension = @current_neighbor.webpages.find(params[:id]).things.first.file.file.extension
 
       disposition = 'attachment'
       mime = MIME::Types.type_for(file).first.content_type
-      if %w{jpg png jpg gif bmp}.include?(extension) or extension == "pdf"
+      if %w{jpg png jpg gif bmp mov}.include?(extension) or extension == "pdf"
         disposition = 'inline'
       end
       send_file(file, :filename => file, :disposition => 'inline', :type => mime)
@@ -20,11 +20,18 @@ module Lodge
   	def new
   		@webpage = Webpage.new
   	end
-
+    def destroy
+      @p = Webpage.find(params[:id])
+      @p.things.each do |t|
+        t.destroy
+      end
+      @p.destroy
+      redirect_to lodge_path
+    end
   	def create
   	  @webpage = Webpage.new(page_params)
       if params["commit"] == 'Next' 
-        @webpage.another = current_another
+        @webpage.neighbor = current_neighbor
   		  form = Type.build_fields(@webpage)
         render_form
       elsif params["commit"] != 'Next' && @webpage.type.name == "thing"
@@ -49,6 +56,7 @@ module Lodge
 
   	end
 
+
     def create_web_thing
       if params["webpage"]["thing"].present?
         @thing = Thing.new(name:@webpage.name,webpage_id:@webpage.id,file:params["webpage"]["thing"])
@@ -65,7 +73,7 @@ module Lodge
     
     end
   	def page_params
-      params.require(:webpage).permit(:another_id,:name,:url,:html,:type_id,:step,:thing)
+      params.require(:webpage).permit(:neighbor_id,:name,:url,:html,:type_id,:step,:thing)
     end
 
     def render_form

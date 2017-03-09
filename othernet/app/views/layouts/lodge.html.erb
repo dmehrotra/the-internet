@@ -8,21 +8,17 @@
 </head>
 <body>
 
-	garden
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 
-
-<% if another_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_another_session_path, :method => :delete) %>        
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_another_session_path)  %>  
-  </li>
+<ul>
+<% if neighbor_signed_in? %>
+  <li><%= link_to('Logout', destroy_neighbor_session_path, :method => :delete) %></li>
+    <li><%= link_to('Edit', edit_neighbor_registration_path) %></li>
 <% end %>
+</ul>
+
 <%= yield %>
 
 </body>

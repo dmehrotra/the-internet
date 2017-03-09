@@ -1,6 +1,6 @@
 class DeviseCreateAnothers < ActiveRecord::Migration
   def change
-    create_table(:anothers) do |t|
+    create_table(:neighbors) do |t|
       ## Database authenticatable
       t.string :another_name,              null: false, default: ""
 
@@ -26,8 +26,8 @@ class DeviseCreateAnothers < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :anothers, :another_name,                unique: true
-    add_index :anothers, :reset_password_token, unique: true
+    add_index :neighbors, :another_name,                unique: true
+    add_index :neighbors, :reset_password_token, unique: true
 
   end
 end

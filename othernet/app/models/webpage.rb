@@ -1,12 +1,13 @@
 class Webpage < ActiveRecord::Base
 
-  belongs_to :another,
+  belongs_to :neighbor,
   	inverse_of: :webpages
   belongs_to :type,
     inverse_of: :webpages
-  validates_presence_of :another_id
+  validates_presence_of :neighbor_id
   has_many :things,
-		inverse_of: :webpage
+		inverse_of: :webpage,
+		dependent: :destroy
   
 
   attr_accessor :thing

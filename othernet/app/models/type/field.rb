@@ -6,9 +6,9 @@ class Type
 			public_send(field)
 
 		end
-		def another_id
+		def neighbor_id
 			@type = 'hidden'
-			@attribute = :another_id
+			@attribute = :neighbor_id
 		
 		end
 		def type_id

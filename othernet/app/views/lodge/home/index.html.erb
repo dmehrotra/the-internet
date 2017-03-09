@@ -1,1 +1,34 @@
-<li><%= link_to "Add New Webpage", new_lodge_webpage_path %> </li>
+
+
+<ul>
+    <li><%= link_to "Add New Webpage", new_lodge_webthing_path %> </li>
+</ul>
+
+<table class="">
+  <thead>
+    <tr class=''>
+      <th>Date Added</th>
+      <th>Type</th>
+      <th>Name</th>
+      <th>URL</th>
+      
+      <th>Published</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @pages.all.each_with_index do |p, i| %>
+    <tr class="row-<%=i%>">
+      <td><%= p.created_at.to_date %></td>
+      <td><%= p.type.name %></td>
+      <td><%= p.name %></td>
+      <td><%= link_to p.url, lodge_webthing_path(p.id) %></td>
+       <td><%= p.publish %></td>
+      <td><%= link_to "edit", edit_lodge_webthing_path(p.id) %></td>
+      <td><%= button_to "delete", {:controller => :webthings, :action => 'destroy', :id => p.id }, :method => :delete %></td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>
+

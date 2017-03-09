@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170305210703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "anothers", force: :cascade do |t|
+  create_table "neighbors", force: :cascade do |t|
     t.string   "another_name",           default: "", null: false
     t.string   "email"
     t.string   "encrypted_password",     default: "", null: false
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 20170305210703) do
     t.datetime "updated_at"
   end
 
-  add_index "anothers", ["another_name"], name: "index_anothers_on_another_name", unique: true, using: :btree
-  add_index "anothers", ["reset_password_token"], name: "index_anothers_on_reset_password_token", unique: true, using: :btree
+  add_index "neighbors", ["another_name"], name: "index_neighbors_on_another_name", unique: true, using: :btree
+  add_index "neighbors", ["reset_password_token"], name: "index_neighbors_on_reset_password_token", unique: true, using: :btree
 
-  create_table "anothers_roles", id: false, force: :cascade do |t|
+  create_table "neighbors_roles", id: false, force: :cascade do |t|
     t.integer "role_id"
-    t.integer "another_id"
+    t.integer "neighbor_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -61,9 +61,10 @@ ActiveRecord::Schema.define(version: 20170305210703) do
   end
 
   create_table "webpages", force: :cascade do |t|
-    t.integer  "another_id"
+    t.integer  "neighbor_id"
     t.integer  "type_id"
     t.string   "name"
+    t.boolean  "publish",     default: false
     t.text     "html"
     t.string   "url"
     t.datetime "created_at"
