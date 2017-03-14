@@ -1,18 +1,23 @@
 Rails.application.routes.draw do
 
-  devise_for :neighbors, path:'/',:path_names => {:sign_in => 'login', :sign_out => 'logout'},:controllers => { :registrations => "neighbors/registrations", :sessions => "neighbors/sessions"}
+  devise_for :neighbors, path:'/',:path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
-  get "/lodge" => 'lodge/home#index', as:"lodge"
-  namespace :lodge do
+  get "/backyard" => 'backyard/home#index', as:"backyard"
+  get "/neighborhood" => 'neighborhood/home#index', as:"neighborhood"
+
+  namespace :backyard do
     resources :webthings, as: "webthings"
     resources :home, only: [:index, :create, :update, :destroy]
+  end
+  namespace :neighborhood do
+    resources :webthings, as: "webthings", only:[:show]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root :to => 'public/home#index'
+  root :to => 'neighborhood/home#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

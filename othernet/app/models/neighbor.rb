@@ -2,9 +2,9 @@ class Neighbor < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :authentication_keys => [:login]
+         :recoverable, :rememberable, :trackable, :authentication_keys => [:another_name]
 
-  attr_accessor :login
+  attr_accessor :another_name
 
 
   validates_presence_of :another_name
@@ -21,27 +21,30 @@ class Neighbor < ActiveRecord::Base
 	end
 
 
+
     def self.find_for_database_authentication(warden_conditions)
+      
       conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions.to_h).where(["lower(another_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      if another_name = conditions.delete(:another_name)
+        where(conditions.to_h).where(["lower(another_name) = :value OR lower(email) = :value", { :value => another_name.downcase }]).first
       elsif conditions.has_key?(:another_name) || conditions.has_key?(:email)
         where(conditions.to_h).first
       end
     end
 
-    def self.find_first_by_auth_conditions(warden_conditions)
-  		conditions = warden_conditions.dup
-	  if login = conditions.delete(:login)
-	    where(conditions).where(["lower(another_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-	  else
-	    if conditions[:another_name].nil?
-	      where(conditions).first
+	def self.find_first_by_auth_conditions(warden_conditions)
+	    conditions = warden_conditions.dup
+	    if another_name = conditions.delete(:another_name)
+	      where(conditions).where(["lower(another_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
 	    else
-	      where(another_name: conditions[:another_name]).first
+	      if conditions[:another_name].nil?
+	        where(conditions).first
+	      else
+	        where(another_name: conditions[:another_name]).first
+	      end
 	    end
-	  end
-	end
+	 end
+
 	# def is_super_admin?
 	# 	admin = self.roles.select{ |r| r.name == "Super Admin"}
 	# 	admin.present?

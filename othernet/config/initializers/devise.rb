@@ -30,7 +30,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   
-config.authentication_keys = [ :login ]
+config.authentication_keys = [ :login, :another_name ]
 config.reset_password_keys = [ :another_name ]
 config.confirmation_keys = [ :another_name]
   # Configure parameters from the request object used for authentication. Each entry

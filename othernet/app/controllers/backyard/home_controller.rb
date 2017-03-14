@@ -1,4 +1,4 @@
-module Lodge
+module Backyard
   class HomeController < ApplicationController
   	include ApplicationHelper
 	  before_filter :check_admin?

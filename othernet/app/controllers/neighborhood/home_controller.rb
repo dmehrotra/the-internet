@@ -1,8 +1,9 @@
-module Public
+module Neighborhood
   class HomeController < ApplicationController
   	include ApplicationHelper
   	def index
-  		@pages = @current_neighbor.webpages
+    	@webthings = Webpage.all
+    	
     end
   end
 end

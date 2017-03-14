@@ -1,4 +1,4 @@
-module Lodge
+module Backyard
   class WebthingsController < ApplicationController
   	include ApplicationHelper
 	  before_filter :check_admin?
@@ -26,7 +26,7 @@ module Lodge
         t.destroy
       end
       @p.destroy
-      redirect_to lodge_path
+      redirect_to backyard_path
     end
   	def create
   	  @webpage = Webpage.new(page_params)
@@ -35,7 +35,7 @@ module Lodge
   		  form = Type.build_fields(@webpage)
         render_form
       elsif params["commit"] != 'Next' && @webpage.type.name == "thing"
-        if @webpage.save!
+        if @webpage.save
           create_web_thing
         else
           render_form
@@ -61,7 +61,7 @@ module Lodge
       if params["webpage"]["thing"].present?
         @thing = Thing.new(name:@webpage.name,webpage_id:@webpage.id,file:params["webpage"]["thing"])
         if @thing.save
-          redirect_to new_lodge_webthing_path
+          redirect_to new_backyard_webthing_path
         else
           @webpage.delete
           render_form
