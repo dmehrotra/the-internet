@@ -1,9 +1,11 @@
-<% if neighbor_signed_in? %>
-  Logged in as <strong><%= current_neighbor.another_name %></strong>.
-  <%= link_to 'Edit profile', edit_neighbor_registration_path %> |
-  <%= link_to "Logout", destroy_neighbor_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign up", new_neighbor_registration_path %> |
-  <%= link_to "Login", new_neighbor_session_path %>
-<% end %>
-
+<div class="row">
+    <div class="four columns box">
+    	<div class="header">New</div>
+    </div>
+    <div class="four columns box">
+    	<div class="header">Top</div>
+    </div>
+    <div class="four columns box">
+    	<div class="header">Tags</div>
+    </div>
+</div>

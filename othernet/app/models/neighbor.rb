@@ -19,8 +19,10 @@ class Neighbor < ActiveRecord::Base
 		admin = "super"
 		admin.present?
 	end
-
-
+	
+	def another_name
+		self["another_name"]
+	end
 
     def self.find_for_database_authentication(warden_conditions)
       

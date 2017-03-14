@@ -7,19 +7,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns"><h3 class='othernet'>o t h e r n e t :: b a c k y a r d </h3>
+			</div>           
+        </div>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+		
+		
+		<div class="row">
+    	<div class="three columns left-column">
+        <ul>
+          <li class='header'>Webthings
+            <ul>
+                <li><%= link_to "New Webthing", new_backyard_webthing_path %></li>
+            </ul>
+          </li>
+          <li class='header'>
+            Account
+            <ul>
+              <% if neighbor_signed_in? %>
+                <li><%= link_to "You", backyard_path %> </li>
+                <li><%= link_to "logout", destroy_neighbor_session_path, method: :delete %></li>
+              <% end %>
+            </ul>
+          </li>
+          
 
+      </div>
 
-<ul>
-<% if neighbor_signed_in? %>
-  <li><%= link_to('Logout', destroy_neighbor_session_path, :method => :delete) %></li>
-    <li><%= link_to('Edit', edit_neighbor_registration_path) %></li>
-<% end %>
-</ul>
+		<div class="nine columns">
+			<%= yield %>
+		</div>
 
-<%= yield %>
-
+	</div>
 </body>
+</html>
+
 </html>

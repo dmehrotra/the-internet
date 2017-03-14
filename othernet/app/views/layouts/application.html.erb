@@ -7,9 +7,47 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-<%= yield %>
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns"><h3 class='othernet'>o t h e r n e t :: n e i g h b o r h o o d </h3></div>
 
+		</div>
+		
+		<div class="row">
+    	<div class="three columns left-column">
+        <ul>
+          <li class='header'>About
+            <ul>
+                <li>What</li>
+                <li>Where</li>
+                <li>How</li>
+            </ul>
+          </li>
+          <li class='header'>Events
+            <ul>
+                <li>When</li>
+            </ul>
+          </li>
+          <li class='header'>
+            Backyard
+            <ul>
+              <% if neighbor_signed_in? %>
+                <li><%= link_to "You", backyard_path %> </li>
+                <li><%= link_to "logout", destroy_neighbor_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "sign up", new_neighbor_registration_path %> </li>
+
+                <li><%= link_to "login", new_neighbor_session_path %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>	
+      </div>
+
+    		<div class="nine columns">
+    			<%= yield %>
+    		</div>
+  		</div>
+	</div>
 </body>
 </html>

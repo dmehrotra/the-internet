@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :neighbors, path:'/',:path_names => {:sign_in => 'login', :sign_out => 'logout'}
+  devise_for :neighbors, path:'/',:path_names => {:sign_in => 'login', :sign_out => 'logout'},:controllers => { :registrations => "neighbors/registrations" }
 
   get "/backyard" => 'backyard/home#index', as:"backyard"
   get "/neighborhood" => 'neighborhood/home#index', as:"neighborhood"
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :home, only: [:index, :create, :update, :destroy]
   end
   namespace :neighborhood do
-    resources :webthings, as: "webthings", only:[:show]
+
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
