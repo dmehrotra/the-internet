@@ -1,5 +1,5 @@
 # The Othernet
-Can I rebuild the internet on a local scale with an eye towards the community?  
+Experiments in trust through decentrlized infrastructure.   
 ## Description
 We take internet infrastructure for granted.  Most of us don't understand it, and as such we have no idea how to leverage it.  I'm interested in building rebuilding internet infrastructure from scratch and on a small scale to explore issues about network control and privacy.  Can we distribute information without relying on ISPs, ad networks, and government snoops? Can a network reflect and be controlled by the community where the network lives.  
 The goal is to anchor the internet to a physical location. To provide a localized network experience that better reflects the community where the network exists.
