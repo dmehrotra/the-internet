@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Othernet</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="sixteen columns">
+	<% if flash[:alert] %>
+		<div class="alert red"> <%= flash[:alert]%></div>
+	<% end %>
+	
+	
+	<h3 class='othernet-search'>
+		<span class='blue' >o </span>
+		<span class='red' >t </span>
+		<span class='yellow' >h </span>
+		<span class='blue' >e </span>
+		<span class='green' >r </span>
+		<span class='yellow' >n </span>
+		<span class='red' >e </span>
+		<span class='blue' >t </span>
+	</h3>
+	 <div class="search-box">
+ 		<input class="u-full-width" type="text" placeholder="search" id="exampleEmailInput">
+ 		<a class="button" href="/neighborhood">Search</a>
+ 		<a class="button" href="/login">Log In</a>
+ 		<a class="button" id="button" href="/wtf">?</a>
+ 	<div>
+</div>
+<script>
+var button = document.getElementById('button'); 
+
+
+</script>
+</body>
+</html>

@@ -23,6 +23,8 @@ default: &default
 
 development:
   <<: *default
+  username: root
+  password: "test123"
   database: othernet_development
 
   # The specified database role being used to connect to postgres.

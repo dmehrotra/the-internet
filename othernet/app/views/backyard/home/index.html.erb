@@ -1,17 +1,17 @@
 
 <div class="row">
-  <p>This is your backyard.  Here you can create webpages and whatever Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+  <p>This is your backyard.  Here you can create, edit, and delete <a href="/backyard/webthings/new">webpages ( Webthings )</a>. Only you can see this.</p>
 </div>
 <table class="">
   <thead>
     <tr class=''>
       <th>Date Added</th>
-      <th>Type</th>
+      
       <th>Name</th>
       <th>URL</th>
       
-      <th>Published</th>
-      <th>Edit</th>
+
+<!--       <th>Edit</th> -->
       <th>Delete</th>
     </tr>
   </thead>
@@ -19,11 +19,11 @@
   <% @pages.all.each_with_index do |p, i| %>
     <tr class="row-<%=i%>">
       <td><%= p.created_at.to_date %></td>
-      <td><%= p.type.name %></td>
+   
       <td><%= p.name %></td>
-      <td><%= link_to p.url, backyard_webthing_path(p.id) %></td>
-       <td><%= p.publish %></td>
-      <td><%= link_to "edit", edit_backyard_webthing_path(p.id) %></td>
+      <td><%= link_to p.url, "http://"+p.url %></td>
+
+<!--       <td><%= link_to "edit", edit_backyard_webthing_path(p.id) %></td> -->
       <td><%= button_to "delete", {:controller => :webthings, :action => 'destroy', :id => p.id }, :method => :delete %></td>
     </tr>
   <%end%>

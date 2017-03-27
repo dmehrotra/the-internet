@@ -9,23 +9,36 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="twelve columns"><h3 class='othernet'>o t h e r n e t :: n e i g h b o r h o o d </h3></div>
+			<div class="twelve columns"><h3 class='othernet'>    <span class='blue' >o </span>
+    <span class='red' >t </span>
+    <span class='yellow' >h </span>
+    <span class='blue' >e </span>
+    <span class='green' >r </span>
+    <span class='yellow' >n </span>
+    <span class='red' >e </span>
+    <span class='blue' >t </span> :: n e i g h b o r h o o d </h3></div>
 
 		</div>
 		
 		<div class="row">
     	<div class="three columns left-column">
         <ul>
-          <li class='header'>About
+          <li class='header'>Here
+              <ul>
+                <li><a href="/search/control">Search</a></li>
+                <li><a href="/neighborhood/home">Neighborhood</a></li>
+              </ul>
+          </li> 
+          <li class='header'>WTF
             <ul>
-                <li>What</li>
-                <li>Where</li>
-                <li>How</li>
+                <li><a href="/wtf">What</a></li>
+                <li><a href="/where">Where</a></li>
+                <li><a href="/how">How</a></li>
             </ul>
           </li>
           <li class='header'>Events
             <ul>
-                <li>When</li>
+                <li><a href="/when">When</a></li>
             </ul>
           </li>
           <li class='header'>
@@ -46,6 +59,9 @@
 
     		<div class="nine columns">
     			<%= yield %>
+          <a class='button'href="/neighborhood/home">Home</a>
+          <a class='button'href="/how">?</a>
+
     		</div>
   		</div>
 	</div>

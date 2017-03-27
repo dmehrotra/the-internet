@@ -1,4 +1,6 @@
 class Webpage < ActiveRecord::Base
+	require 'uri'
+  before_save :downcase_fields
 
   belongs_to :neighbor,
   	inverse_of: :webpages
@@ -9,9 +11,14 @@ class Webpage < ActiveRecord::Base
 		inverse_of: :webpage,
 		dependent: :destroy
   
+ validates_uniqueness_of :url
+
 
   attr_accessor :thing
 
 
+def downcase_fields
+  self.url.downcase!
+end
 
 end

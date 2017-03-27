@@ -33,12 +33,13 @@ module Backyard
       if params["commit"] == 'Next' 
         @webpage.neighbor = current_neighbor
   		  form = Type.build_fields(@webpage)
-        render_form
+        render_form(@webpage)
       elsif params["commit"] != 'Next' && @webpage.type.name == "thing"
         if @webpage.save
           create_web_thing
+          
         else
-          render_form
+          render_form(@webpage)
         end
       end
 
@@ -61,14 +62,20 @@ module Backyard
       if params["webpage"]["thing"].present?
         @thing = Thing.new(name:@webpage.name,webpage_id:@webpage.id,file:params["webpage"]["thing"])
         if @thing.save
-          redirect_to new_backyard_webthing_path
+          redirect_to backyard_path
         else
+          new_page = @webpage.dup
+          new_page.id = nil
           @webpage.delete
-          render_form
+          @webpage = new_page
+          render_form(new_page)
         end
-
       else
-        render_form
+        new_page = @webpage.dup
+        new_page.id = nil
+        @webpage.delete
+        @webpage = new_page
+        render_form(new_page)
       end
     
     end
@@ -76,9 +83,9 @@ module Backyard
       params.require(:webpage).permit(:neighbor_id,:name,:url,:html,:type_id,:step,:thing)
     end
 
-    def render_form
-      form = Type.build_fields(@webpage)
-      render 'create_webpage_form', locals: {form_fields: form,notice: params["commit"] == 'Next' ? '' : @webpage.errors.full_messages}
+    def render_form(webpage)
+      form = Type.build_fields(webpage)
+      render 'create_webpage_form', locals: {form_fields: form,notice: params["commit"] == 'Next' ? '' : webpage.errors.full_messages}
     end
 
   end

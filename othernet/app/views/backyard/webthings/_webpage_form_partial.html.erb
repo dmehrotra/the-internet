@@ -1,24 +1,67 @@
+<div class="row margin-40-top">
+	<div class="info">You are building a 
+		<span class="green"><%=@webpage.type.name%></span> for the
+		<span class='blue' >o </span>
+		<span class='red' >t </span>
+		<span class='yellow' >h </span>
+		<span class='blue' >e </span>
+		<span class='green' >r </span>
+		<span class='yellow' >n </span>
+		<span class='red' >e </span>
+		<span class='blue' >t </span>
+	</div>
+</div>
+<div class="row">
+	<%= simple_form_for @webpage, url: url do |f| %>
+		<% form_fields.each do |field|%>
+			<% if field.type == 'hidden' %>
+				<%= f.input field.attribute, as: :hidden %>
+			<%end%>
+			<% if field.type == 'text' %>
+				<%= f.input field.attribute, required: false %>
+			<%end%>
 
-
-<%= simple_form_for @webpage, url: url do |f| %>
-	<% form_fields.each do |field|%>
-		<% if field.type == 'hidden' %>
-			<%= f.input field.attribute, as: :hidden %>
+			<% if field.type == 'file_field' %>
+				<%= f.file_field field.attribute %>
+			<%end%>
 		<%end%>
-		<% if field.type == 'text' %>
-			<%= f.input field.attribute, required: false %>
-		<%end%>
-
-		<% if field.type == 'file_field' %>
-		<%=@webpage.type.name%>
-			<%= f.file_field field.attribute %>
-		<%end%>
-
-	<%end%>
+</div>
+<div class="row">
 	<%= submit_tag 'Save', class: "btn btn-default" %>
 	<%= submit_tag 'Save and Preview', :name => 'preview', class: "btn btn-default" %>
-	<% if edit %>
+<!-- 	<% if edit %>
 		<%= link_to "delete", {:controller => :webpages, :action => 'destroy', :id => @webpage.id }, :method => :delete, class: "btn btn-danger" %>
-	<%end%>
-
+	<%end%> -->
 <%end%>
+</div>
+<div class="info">
+	<ul>
+	    <li> <span class='yellow'>Name:</span> What do you want to call the thing you are hosting?</li>
+	    <li>
+	    	<span class='blue'>URL:</span> What URL should people use to access your item. It can be whatever you want, so long as its alphanumeric. Examples:
+	    	<ul>
+	    	    <li class='eg green'>www.mycat.frank</li>
+	    	    <li class='eg red'>w.poetryBy.m3</li>
+	    	    <li class='eg yellow'>xxx.mycoolsite.xxx</li>
+	    	</ul>
+	    </li>
+	    <li><span class='green'>File:</span> You can upload any 
+	    	<ul>
+	        	<li>.png, .jpg, .gif, .pdf</li>
+	        	<li>.html 
+	        		<ul class='decorate'>
+	        		    <li><span class='red'> - no external links in html</span></li>
+	        		    <li class='green'> - If you'd like images in your html file please use our go back and use our page builder ( coming soon )</li>
+	        		    <li></li>
+	        		    <li></li>
+	        		</ul>
+	        		
+
+	        	</li>
+
+	        	<li></li>
+	    	</ul> 
+	    <li></li>
+	</ul>	
+</div>
+

@@ -1,11 +1,32 @@
 <div class="row">
-    <div class="four columns box">
-    	<div class="header">New</div>
+    <div class="nine columns">
+        <div class="row">
+          <p>Welcome to the neighborhood. You are not connected to the internet, you are on something entirely different.  A constellation of new things that cannot exist elsewhere. Explore, contribute, grow</p>
+        </div>
+        <div class="row">
+            <div class="six columns">
+            	<div class="header">New</div>
+            	<ul>
+            		<% @webthings.each do |page| %>
+            	    	<li><a href="http://<%=page.url%>"><%= page.url %></a></li>
+            	    <%end%>
+            	</ul>
+            </div>
+            <div class="six columns">
+                <div class="header">Top</div>
+                <ul>
+                  <li><a href="http://w.art.m3">w.art.m3</a></li>    
+                  <li><a href="http://www.hiskingdom.comet/">http://www.hiskingdom.comet/</a></li>
+                  <li><a href="www.meet-the-eckerts.eckert">www.meet-the-eckerts.eckert</a></li>    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                <div class="header">Message Board</div>
+                <span class="red">c o m i n g  s o o n</span><span class="green">c o m i n g s o o n</span> <span class="blue">c o m i n g s o o n</span> <span class="yellow">c o m i n g   s o o n</span> <span class="green">c o m i n g s o o n</span> <span class="red">c o m i n g s o o n</span>  <span class="red">c o m i n g  s o o n</span><span class="green">c o m i n g s o o n</span><span class="blue">c o m i n g s o o n</span> <span class="blue">c o m i n g   s o o n</span> <span class="green">c o m i n g s o o n</span> <span class="red">c o m i n g s o o n</span>  <span class="red">c o m i n g  s o o n</span><span class="blue">c o m i n g s o o n</span> <span class="blue">c o m i n g s o o n</span> <span class="yellow">c o m i n g   s o o n</span> <span class="yellow">c o m i n g s o o n</span> <span class="red">c o m i n g s o o n</span>  <span class="red">c o m i n g  s o o n</span><span class="green">c o m i n g s o o n</span> <span class="blue">c o m i n g s o o n</span> <span class="green">c o m i n g   s o o n</span> <span class="green">c o m i n g s o o n</span> <span class="red">c o m i n g s o o n</span>  <span class="red">c o m i n g  s o o n</span><span class="green">c o m i n g s o o n</span> <span class="blue">c o m i n g s o o n</span> <span class="red">c o m i n g   s o o n</span> <span class="green">c o m i n g s o o n</span> <span class="red">c o m i n g s o o n</span> <span class="red">c o m i n g  s o o n</span><span class="green">c o m i n g s o o n</span> <span class="yellow">c o m i n g s o o n</span> <span class="yellow">c o m i n g   s o o n</span> <span class="green">c o m i n g s o o n</span> <span class="red">c o m i n g s o o n</span> 
+            </div>
+        </div>
     </div>
-    <div class="four columns box">
-    	<div class="header">Top</div>
-    </div>
-    <div class="four columns box">
-    	<div class="header">Tags</div>
-    </div>
+
 </div>

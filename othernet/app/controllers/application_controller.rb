@@ -2,16 +2,20 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
  	before_action :configure_permitted_parameters, if: :devise_controller?
-
 	protect_from_forgery with: :exception
 	before_filter :backyard_layout
 	layout :backyard_layout
 	def backyard_layout
 		if backyard_mode
 			'backyard'
+		elsif search_mode
+			'search'
 		end
+		
 	end
-
+	def search_mode
+		self.class.parent == Search
+	end
 	def backyard_mode
 		self.class.parent == Backyard
 	end

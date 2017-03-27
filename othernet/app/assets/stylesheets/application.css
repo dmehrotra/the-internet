@@ -16,11 +16,58 @@
  *= require skeleton
  */
 
-.header,.othernet{
+.alert{
+	margin-top:20px;
+	text-align: center;
+}
+ .info, p,span, .error{
+ 	letter-spacing: .2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+ }
+ .error{
+ 	margin-left: 10px;
+ 	color:#EA2533;
+ }
+ .info{
+ 	text-align: left;
+ 	margin-bottom:20px;
+ }
+ .info ul{
+ 	list-style: none;
+ }
+
+.margin-40-top{
+	margin-top:40px;
+}
+.header,.othernet,label, .alert{
 	text-transform: uppercase;
     font-size: 1.4rem;
     letter-spacing: .2rem;
     font-weight: 600;
+}
+label{
+	font-size:13px;
+}
+.othernet-search{
+	margin-top:200px;
+	text-align: center;
+}
+.search-box{
+	width:45%;
+	margin:auto;
+}
+.blue{
+	color:#4A75E6;
+}
+.yellow{
+	color:#FEBC1F;
+}
+.red{
+	color:#EA2533;
+}
+.green{
+	color:#08AF22;
 }
 .othernet{
 	margin-top: 20px;
