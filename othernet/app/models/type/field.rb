@@ -1,6 +1,6 @@
 class Type
 	class Field
-		attr_accessor :type, :attribute, :collection, :label_method, :resource, :selected
+		attr_accessor :type, :attribute, :collection, :label_method, :resource, :selected,:input_name
 		def initialize(resource, field)
 			@resource = resource
 			public_send(field)
@@ -26,6 +26,7 @@ class Type
 		def thing
 			@type='file_field'
 			@attribute = :thing
+			@input_name = "things[file][]" 
 		end
 
 

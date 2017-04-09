@@ -29,6 +29,7 @@ module Backyard
       redirect_to backyard_path
     end
   	def create
+
   	  @webpage = Webpage.new(page_params)
       if params["commit"] == 'Next' 
         @webpage.neighbor = current_neighbor
@@ -56,20 +57,22 @@ module Backyard
       # end	
 
   	end
-
-
     def create_web_thing
-      if params["webpage"]["thing"].present?
-        @thing = Thing.new(name:@webpage.name,webpage_id:@webpage.id,file:params["webpage"]["thing"])
-        if @thing.save
-          redirect_to backyard_path
-        else
-          new_page = @webpage.dup
-          new_page.id = nil
-          @webpage.delete
-          @webpage = new_page
-          render_form(new_page)
+      if params["things"]["file"].length > 0 
+        params["things"]["file"].each do |t|
+          new_file = Thing.new(name:@webpage.name,webpage_id:@webpage.id,file:t)
+          if new_file.save
+            print "saved file"
+          else
+            new_page = @webpage.dup
+            new_page.id = nil
+            @webpage.delete
+            @webpage = new_page
+            render_form(new_page)
+          end
         end
+        @webpage.handle_references
+        redirect_to backyard_path
       else
         new_page = @webpage.dup
         new_page.id = nil
@@ -77,10 +80,11 @@ module Backyard
         @webpage = new_page
         render_form(new_page)
       end
-    
     end
   	def page_params
-      params.require(:webpage).permit(:neighbor_id,:name,:url,:html,:type_id,:step,:thing)
+      params.require(:webpage).permit(
+        :neighbor_id,:name,:url,:html,:type_id,:step,
+        things_attributes: [:id,:file, :post_id])
     end
 
     def render_form(webpage)

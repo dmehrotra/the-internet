@@ -22,7 +22,7 @@
 			<%end%>
 
 			<% if field.type == 'file_field' %>
-				<%= f.file_field field.attribute %>
+				<%= f.file_field field.attribute,name: field.input_name, multiple: true  %>
 			<%end%>
 		<%end%>
 </div>
