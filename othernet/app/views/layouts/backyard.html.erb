@@ -5,49 +5,91 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="twelve columns"><h3 class='othernet'>    <span class='blue' >o </span>
-    <span class='red' >t </span>
-    <span class='yellow' >h </span>
-    <span class='blue' >e </span>
-    <span class='green' >r </span>
-    <span class='yellow' >n </span>
-    <span class='red' >e </span>
-    <span class='blue' >t </span> :: b a c k y a r d </h3>
-			</div>           
+	  <section class="navigation">
+      <div class="nav-container">
+        <div class="brand">
+          <a href="#!">
+            <h3 class='othernet'>
+              <span class='blue' >o </span>
+              <span class='red' >t </span>
+              <span class='yellow' >h </span>
+              <span class='blue' >e </span>
+              <span class='green' >r </span>
+              <span class='yellow' >n </span>
+              <span class='red' >e </span>
+              <span class='blue' >t </span>
+            </h3>
+          </a>
         </div>
-
-		
-		
-		<div class="row">
-    	<div class="three columns left-column">
-        <ul>
-          <li class='header'>Webthings
-            <ul>
+        <nav>
+          <div class="nav-mobile">
+            <a id="nav-toggle" href="#!"><span></span></a>
+          </div>
+          <ul class="nav-list">
+            <li class="header">
+              <a href="#!">Webthings</a>
+              <ul class="nav-dropdown">
                 <li><%= link_to "New Webthing", new_backyard_webthing_path %></li>
-            </ul>
-          </li>
-          <li class='header'>
-            Account
-            <ul>
-              <% if neighbor_signed_in? %>
-                <li><%= link_to "You", backyard_path %> </li>
-                <li><%= link_to "logout", destroy_neighbor_session_path, method: :delete %></li>
-              <% end %>
-            </ul>
-          </li>
-          
+              </ul>
+            </li>
+            <li class="header">
+              <a href="#!">Account</a>
+              <ul class="nav-dropdown">
+                <% if neighbor_signed_in? %>
+                  <li><%= link_to "You", backyard_path %> </li>
+                  <li><%= link_to "logout", destroy_neighbor_session_path, method: :delete %></li>
+                <% end %>
+              </ul>
+            </li>
+            <li class="header">
+              <a href="#!">Backyard</a>
+                <ul class="nav-dropdown">
+                  <% if neighbor_signed_in? %>
+                    <li><%= link_to "You", backyard_path %> </li>
+                    <li><%= link_to "logout", destroy_neighbor_session_path, method: :delete %></li>
+                  <% else %>
+                    <li><%= link_to "sign up", new_neighbor_registration_path %> </li>
 
-      </div>
-
-		<div class="nine columns">
+                    <li><%= link_to "login", new_neighbor_session_path %></li>
+                  <% end %>
+                </ul>
+              </li>
+            </ul> 
+            </li>
+        </nav>
+    </div>
+  </section>
+  <div class="container">
+		<div class="twelve columns">
 			<%= yield %>
 		</div>
-
 	</div>
+    <script>
+    $('nav ul li a:not(:only-child)').click(function(e) {
+      $(this).siblings('.nav-dropdown').toggle();
+      // Close one dropdown when selecting another
+      $('.nav-dropdown').not($(this).siblings()).hide();
+      e.stopPropagation();
+    });
+    // Clicking away from dropdown will remove the dropdown class
+    $('html').click(function() {
+      $('.nav-dropdown').hide();
+    });
+    // Toggle open and close nav styles on click
+    $('#nav-toggle').click(function() {
+      $('nav ul').slideToggle();
+    });
+    // Hamburger to X toggle
+    $('#nav-toggle').on('click', function() {
+      this.classList.toggle('active');
+    });
+
+
+
+  </script>
 </body>
 </html>
 

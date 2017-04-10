@@ -14,7 +14,7 @@ class Type < ActiveRecord::Base
 		[
 			{
 				name: "Thing",
-				fields:['neighbor_id','type_id','name','url','thing'] 
+				fields:['neighbor_id','type_id','name','description','url','thing'] 
 
 			}
 		]

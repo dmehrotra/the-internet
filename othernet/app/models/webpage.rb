@@ -6,7 +6,7 @@ class Webpage < ActiveRecord::Base
   	inverse_of: :webpages
   belongs_to :type,
     inverse_of: :webpages
-  validates_presence_of :neighbor_id, :name, :url
+  validates_presence_of :neighbor_id, :name, :url,:description 
   has_many :things,
 		inverse_of: :webpage,
 		dependent: :destroy
@@ -22,6 +22,7 @@ class Webpage < ActiveRecord::Base
     file = get_html_file_if_exists
     if file.present?
       if self.multiple?
+        
         file.adjust_references
       end
     end
@@ -35,7 +36,8 @@ class Webpage < ActiveRecord::Base
       file = f.file.path
       extension = f.file.file.extension
       mime = MIME::Types.type_for(file).first.content_type
-      if mime = "text/html"
+     
+      if mime == "text/html"
         contains_html = f
       end
     end

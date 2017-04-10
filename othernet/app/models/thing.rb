@@ -2,17 +2,21 @@ class Thing < ActiveRecord::Base
 	belongs_to :webpage
 	mount_uploader :file, ThingUploader 
 	def adjust_references
-		File.open(self.file.path, "r+") do |f|	    
-		    f.each do |line|
-		        if line.include?("src")
-		        	reference = find_referenced_file(line)
-		        	if reference.present?
-		        		 new_path = reference[:thing].file.url
-		        		 f.print line.gsub(line.split('"')[reference[:index]], "http://localhost"+new_path)
-		        		 
-		        	end
-		        end
-		    end
+		lines = IO.readlines(self.file.path).map do |line|
+		   new_line = line
+		   if new_line.include?("src") || new_line.include?("url")
+		      
+		      reference = find_referenced_file(new_line)
+		      if reference.present?
+		        
+		        new_path = reference[:thing].file.url
+		       	new_line = new_line.gsub(new_line.split('"')[reference[:index]], "http://localhost"+new_path)
+		      end
+		   end
+		   new_line
+		end
+		File.open(self.file.path, 'w') do |file|
+		  file.puts lines
 		end
 	end
 	def find_referenced_file(line)

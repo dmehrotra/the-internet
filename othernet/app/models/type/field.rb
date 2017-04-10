@@ -6,6 +6,10 @@ class Type
 			public_send(field)
 
 		end
+		def description
+			@type = 'text'
+			@attribute = :description
+		end
 		def neighbor_id
 			@type = 'hidden'
 			@attribute = :neighbor_id

@@ -83,7 +83,7 @@ module Backyard
     end
   	def page_params
       params.require(:webpage).permit(
-        :neighbor_id,:name,:url,:html,:type_id,:step,
+        :neighbor_id,:name,:url,:html,:type_id,:step,:description,
         things_attributes: [:id,:file, :post_id])
     end
 
