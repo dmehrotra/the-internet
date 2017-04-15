@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/where" => 'neighborhood/home#where'
   get "/how" => 'neighborhood/home#how'
    get "/when" => 'neighborhood/home#how'
+  get "/webthings/query" => 'neighborhood/webthings#results'
   namespace :backyard do
     resources :webthings, as: "webthings"
     resources :home, only: [:index, :create, :update, :destroy]
@@ -16,11 +17,12 @@ Rails.application.routes.draw do
   namespace :neighborhood do
      resources :webthings, as: "webthings"
      resources :home
+     
   end
   namespace :search do
     resources :control, only:[:index]
   end
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

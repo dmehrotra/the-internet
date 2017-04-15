@@ -10,7 +10,7 @@ class Thing < ActiveRecord::Base
 		      if reference.present?
 		        
 		        new_path = reference[:thing].file.url
-		       	new_line = new_line.gsub(new_line.split('"')[reference[:index]], "http://localhost"+new_path)
+		       	new_line = new_line.gsub(new_line.split('"')[reference[:index]], "http://10.0.0.2"+new_path)
 		      end
 		   end
 		   new_line

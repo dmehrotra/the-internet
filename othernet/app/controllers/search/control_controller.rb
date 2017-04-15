@@ -1,8 +1,12 @@
 module Search
   class ControlController < ApplicationController
   	include ApplicationHelper
-  	def index
-    		@webthings = Webpage.all
-    end
+	  
+    def index  
+    	
+  		@query = Query.new
+
+  	end
+  	
   end
 end

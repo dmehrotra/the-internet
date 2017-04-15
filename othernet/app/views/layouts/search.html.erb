@@ -25,11 +25,18 @@
 		<span class='red' >e </span>
 		<span class='blue' >t </span>
 	</h3>
+
+
+
+
 	 <div class="search-box">
- 		<input class="u-full-width" type="text" placeholder="search" id="exampleEmailInput">
- 		<a class="button" href="/neighborhood">Search</a>
+	 	<%= simple_form_for @query,method: 'get' , url: '/webthings/query' do |f| %>
+	  		<%= f.input :query, label:false, input_html: {class: "u-full-width", placeholder: ""}%>
+	  		<%= submit_tag "search"%>
+	  	
  		<a class="button" href="/login">Log In</a>
- 		<a class="button" id="button" href="/wtf">?</a>
+		<% end %>
+
  	<div>
 </div>
 <script>

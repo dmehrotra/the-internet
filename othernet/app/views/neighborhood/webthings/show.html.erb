@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="twelve columns">
+		<p class='query'>you searched for: <span class="red"> <%= @results[:query] %> </span> </p>
+		<div class="result-container">
+			<% @results[:pages].each do |p| %>
+	    		<div class="result">
+		    		<p class="name"><%= p.name %> :: <a href="http://<%=p.url%>"><%= p.url %></a></p>
+		    		<p class="description">
+		    			<%= p.description %>
+		    		</p>
+	    		</div>
+	    	<%end%>
+	    </div>
+	</div>
+</div>
+
