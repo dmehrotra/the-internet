@@ -1,1 +1,2 @@
-<%= render partial: 'webpage_form_partial', html: {multipart: true},locals: { form_fields: form_fields, edit: @webpage.id.present?, url: backyard_webthings_path } %>
+
+<%= render partial: 'webpage_form_partial', html: {multipart: true},locals: { form_fields: form_fields, edit: @webpage.id.present?, url: @webpage.id.present? ? backyard_webthing_path(@webpage.id) : backyard_webthings_path } %>

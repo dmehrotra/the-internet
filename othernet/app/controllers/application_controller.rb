@@ -10,8 +10,14 @@ class ApplicationController < ActionController::Base
 			'backyard'
 		elsif search_mode
 			'search'
+		elsif public_mode
+			'public'
 		end
+
 		
+	end
+	def public_mode
+		self.class.parent == Public
 	end
 	def search_mode
 		self.class.parent == Search

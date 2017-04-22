@@ -11,7 +11,7 @@
       <th>URL</th>
       
 
-<!--       <th>Edit</th> -->
+      <th>Edit</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -22,8 +22,11 @@
    
       <td><%= p.name %></td>
       <td><%= link_to p.url, "http://"+p.url %></td>
-
-<!--       <td><%= link_to "edit", edit_backyard_webthing_path(p.id) %></td> -->
+      <% if p.type.name != 'thing' %>
+        <td><%= link_to "edit", edit_backyard_webthing_path(p.id), class:"button button-primary" %></td> 
+      <%else%>
+      <td></td>
+      <%end%>
       <td><%= button_to "delete", {:controller => :webthings, :action => 'destroy', :id => p.id }, :method => :delete %></td>
     </tr>
   <%end%>

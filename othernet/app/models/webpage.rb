@@ -1,6 +1,8 @@
 class Webpage < ActiveRecord::Base
 	require 'uri'
   before_save :downcase_fields
+  mount_uploader :bg_img, BgImgUploader 
+  mount_uploader :otherpic, OtherpicUploader 
 
   belongs_to :neighbor,
   	inverse_of: :webpages

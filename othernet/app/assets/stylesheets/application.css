@@ -14,6 +14,11 @@
  *= require_self
  *= require normalize
  *= require skeleton
+ *= require froala_editor.min.css
+ *= require froala_style.min.css
+ *= require font-awesome
+ *= require plugins/colors.min.css
+
  */
 
 .alert{
@@ -255,7 +260,9 @@ article {
   margin: 0 auto;
   padding: 10px;
 }
-
+.image img{
+  max-width:100%;
+}
 
 
 

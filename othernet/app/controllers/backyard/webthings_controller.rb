@@ -6,16 +6,12 @@ module Backyard
   		
   	end
     def show
-      file = @current_neighbor.webpages.find(params[:id]).things.first.file.path
-      extension = @current_neighbor.webpages.find(params[:id]).things.first.file.file.extension
 
-      disposition = 'attachment'
-      mime = MIME::Types.type_for(file).first.content_type
-      if %w{jpg png jpg gif bmp mov}.include?(extension) or extension == "pdf"
-        disposition = 'inline'
-      end
-      send_file(file, :filename => file, :disposition => 'inline', :type => mime)
+    end
+    def edit
 
+      @webpage = Webpage.find(params[:id])
+      render_form(@webpage)
     end
   	def new
   		@webpage = Webpage.new
@@ -28,16 +24,31 @@ module Backyard
       @p.destroy
       redirect_to backyard_path
     end
+    def update
+      @webpage = Webpage.find(params[:id])
+      if @webpage.update(page_params)
+         redirect_to "http://www.test.com"
+      else
+         neighborhood_webthings_path
+      end
+
+    end
   	def create
 
   	  @webpage = Webpage.new(page_params)
       if params["commit"] == 'Next' 
+
         @webpage.neighbor = current_neighbor
   		  form = Type.build_fields(@webpage)
         render_form(@webpage)
-      elsif params["commit"] != 'Next' && @webpage.type.name == "thing"
+      
+      elsif params["commit"] != 'Next' 
         if @webpage.save
-          create_web_thing
+          if @webpage.type.name == "thing"
+            create_web_thing
+          else
+            redirect_to "www.test.com"
+          end
           
         else
           render_form(@webpage)
@@ -60,7 +71,7 @@ module Backyard
     def create_web_thing
       if params["things"]["file"].length > 0 
         params["things"]["file"].each do |t|
-          new_file = Thing.new(name:@webpage.name,webpage_id:@webpage.id,file:t)
+          new_file = Thing.new(name:"thing",webpage_id:@webpage.id,file:t)
           if new_file.save
             print "saved file"
           else
@@ -83,8 +94,9 @@ module Backyard
     end
   	def page_params
       params.require(:webpage).permit(
-        :neighbor_id,:name,:url,:html,:type_id,:step,:description,
-        things_attributes: [:id,:file, :post_id])
+        :neighbor_id,:name,:url,:html,:type_id,:step,:bg_img,:otherpic,:description, :title, :headline, :section_one_title, :section_one_content, 
+        :section_two_title, :section_two_content, :section_three_title, :section_three_content,
+        :text_under_image, things_attributes: [:id,:file, :post_id])
     end
 
     def render_form(webpage)
@@ -94,3 +106,4 @@ module Backyard
 
   end
 end
+

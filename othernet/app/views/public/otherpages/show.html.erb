@@ -1,0 +1,61 @@
+<center>
+	<font class="title"><%=@resource.headline.html_safe%></font><br>
+</center><br>
+
+
+<table align="center" cellpadding="7" cellspacing="0" border="1" style="border-color: black;">
+	<tbody>
+		<tr>
+			<td bgcolor="#F5F5F5">
+				<table border="0" align="center">
+					<tbody>
+						<tr>
+							<td align="center">
+								<font class="name"><%=@resource.title.html_safe%></font>
+								<hr>
+								<img src="<%=@resource.otherpic.url%>" width="270" height="310" border="1">
+								<br><br>
+								<font class="quote">
+									<%=@resource.text_under_image.html_safe%>
+								</font>
+								<br><br>
+							</td>
+							<td width="10">&nbsp;</td>
+							<td>
+								<center>
+									<font class="schedtitle"><%=@resource.section_one_title.html_safe%></font><hr>
+									<table align="center">
+										<tbody>
+											
+											<%=@resource.section_one_content.html_safe%>
+
+										</tbody>
+									</table>
+	
+									<hr>
+									<font class="vactitle"><%=@resource.section_two_title.html_safe%></font><hr>
+								</center>
+<!--UPDATE VACATION SCHEDULE HERE-->
+
+								<font class="vacation">
+
+									<%=@resource.section_two_content.html_safe%>
+								</font>
+								<center>
+									<font class="vacation"></font>
+									<hr>
+
+									<font class="bustitle"><%=@resource.section_three_title.html_safe%></font><hr>
+									<font class="business">
+										<%=@resource.section_three_content.html_safe%>
+									</font>
+								</center>
+							</td>
+						</tr>
+					</tbody>
+			</table>
+		</td>
+	</tr>
+</tbody>
+</table>
+

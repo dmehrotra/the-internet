@@ -1,0 +1,46 @@
+<div class="row">
+	<div class="image" style='max-width:100%'> 
+		<%= image_tag("builder.gif") %>
+	</div>
+</div>
+
+
+    <!-- Include Editor JS files. -->
+
+<div class="row">
+<% form_fields.each do |field|%>
+	<% if field.type == 'hidden' %>
+		<%= f.input field.attribute, as: :hidden %>
+	<%end%>
+	<% if field.type == 'text' %>
+		<% if field.wysiwyg == true %>
+			<div class="froala">
+				<%= f.input field.attribute, as: :text,required: false%>
+			</div>
+		<%else%>
+			<%= f.input field.attribute, as: :text,required: false%>
+		<%end%>
+	<%end%>
+
+	<% if field.type == 'file_field' %>
+		 <label for=""><%=field.label%></label>
+		<%= f.file_field field.attribute,name: field.input_name, multiple: true  %>
+	<%end%>
+<%end%>
+
+
+</div>
+<script>
+ $(function() {
+    $('.froala textarea').froalaEditor({
+       toolbarButtons: ['bold','align', 'underline', 'color', 'fontFamily', 'fontSize', '|', 'paragraphFormat'],
+      // Colors list.
+      
+      colorsDefaultTab: 'background'
+      
+    })
+
+
+    $('a').filter(function(index) { return $(this).text() === "Unlicensed Froala Editor"; }).remove()
+  });
+</script>

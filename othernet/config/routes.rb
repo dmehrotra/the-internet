@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   namespace :search do
     resources :control, only:[:index]
   end
+  namespace :public do
+    resources :otherpages, only:[:show]
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

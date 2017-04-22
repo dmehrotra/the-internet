@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Othernet</title>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<style>
+.title			{
+				 color: #333333;
+				 font-family: "tahoma";
+				 font-size: 6mm;
+				 font-weight: 900
+				}
+
+.name 			{color: #000000;
+				 font-size: 8mm;
+				 font-family: "tahoma";
+				 font-weight: 900}
+.section-one-title		{color: #990033;
+				 font-size: 7mm;
+				 font-family: "tahoma";
+				 font-weight: 900}
+.section-one-content		{color: #990099;
+				 font-size: 3.5mm;
+				 font-family: "Arial";
+				 font-weight: 700}
+.schedulenote   {color: #990000;
+				 font-size: 5.5mm;
+				 font-family: "Arial";
+				 font-weight: 700}
+.vactitle 		{color: #0000FF;
+				 font-size: 6mm;
+				 text-decoration: "none";
+				 font-family: "tahoma";
+				 font-weight: 800}
+.vacation		{color: #FF0000;
+				 font-size: 4.5mm;
+				 font-family: "Arial";
+				 font-weight: 900}
+.quote 			{color: #ff0000;
+				 font-size: 3.5mm;
+				 font-family: "Tahoma";
+				 font-weight: 700;
+				 text-decoration: "italics"}
+.bustitle		{color: #007799;
+				 text-decoration: "none";
+				 font-size: 6mm;
+				 font-family: "tahoma";
+				 font-weight: 800}
+.business		{color: #007700;
+				 font-size: 3.5mm;
+				 font-family: "arial";
+				 font-weight: 700}
+.infocall		{color: #000000;
+				 font-size: 3mm;
+				 font-family: "tahoma";
+				 font-weight: 700}
+.infoemph		{color: #000000;
+				 font-family: "tahoma";
+				 font-size: 3mm;
+				 font-weight: 700;
+				 text-decoration: "underline"}
+.hamstamp 		{color: #666666;
+				 font-family: "Rounded MT Bold", "Arial";
+				 font-weight: 800;
+				 font-size: 3mm}
+
+A.type1:link    {text-decoration:none;}
+A.type1:visited {text-decoration:none;}
+A.type1:active  {text-decoration:none;}
+A.type1:hover   {text-decoration:none;}
+body{
+	background-image: url("<%=@resource.bg_img.url%>");
+}
+</style>
+
+
+<body>
+	<%= yield %>
+		
+</body>
+
+
+</html>

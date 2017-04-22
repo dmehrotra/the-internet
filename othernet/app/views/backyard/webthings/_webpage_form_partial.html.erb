@@ -1,3 +1,4 @@
+
 <div class="row margin-40-top">
 	<div class="info">You are building a 
 		<span class="green"><%=@webpage.type.name%></span> for the
@@ -11,8 +12,12 @@
 		<span class='blue' >t </span>
 	</div>
 </div>
-<div class="row">
-	<%= simple_form_for @webpage, url: url do |f| %>
+
+<%= simple_form_for @webpage, :defaults => { :input_html => { :class => "u-full-width" } }, url: url do |f| %>
+	<% if @webpage.type.name != 'thing'%>
+		<%= render partial: 'builder_form_partial', html: {multipart: true},locals: { form_fields: form_fields, f: f, edit: @webpage.id.present?, url: backyard_webthings_path } %>
+	<% else %>
+		<div class="row">
 		<% form_fields.each do |field|%>
 			<% if field.type == 'hidden' %>
 				<%= f.input field.attribute, as: :hidden %>
@@ -25,44 +30,25 @@
 				<%= f.file_field field.attribute,name: field.input_name, multiple: true  %>
 			<%end%>
 		<%end%>
-</div>
+		</div>
+	<%end%>
+
 <div class="row">
-	<%= submit_tag 'Save', class: "btn btn-default" %>
-	<%= submit_tag 'Save and Preview', :name => 'preview', class: "btn btn-default" %>
-<!-- 	<% if edit %>
-		<%= link_to "delete", {:controller => :webpages, :action => 'destroy', :id => @webpage.id }, :method => :delete, class: "btn btn-danger" %>
-	<%end%> -->
+
+ 	<% if edit %>
+ 		<input type="submit" name="commit" value="Save" class="btn btn-default">
+ 		<input type="hidden" name="_method" value="put">
+		<%= button_to "delete", {:controller => :webthings, :action => 'destroy', :id => @webpage.id }, :method => :delete %>
+		<script>
+		$( "input[value='delete']" ).remove()
+		</script>
+	<%else%>
+		<%= submit_tag 'Save', class: "btn btn-default" %>
+	<%end%> 
 <%end%>
 </div>
 <div class="info">
-	<ul>
-	    <li> <span class='yellow'>Name:</span> What do you want to call the thing you are hosting?</li>
-	    <li> <span class='red'>Description:</span> How would you describe the thing you are hosting? Be specific, the more specific you are the better the search engine will function.</li>
-	    <li>
-	    	<span class='blue'>URL:</span> What URL should people use to access your item. It can be whatever you want, so long as its alphanumeric. Examples:
-	    	<ul>
-	    	    <li class='eg green'>www.mycat.frank</li>
-	    	    <li class='eg red'>w.poetryBy.m3</li>
-	    	    <li class='eg yellow'>xxx.mycoolsite.xxx</li>
-	    	</ul>
-	    </li>
-	    <li><span class='green'>File:</span> You can upload any 
-	    	<ul>
-	        	<li>.png, .jpg, .gif, .pdf</li>
-	        	<li>.html 
-	        		<ul class='decorate'>
-	        		    <li><span class='red'> - no external links in html</span></li>
-	        		    <li class='green'> - If you'd like images in your html file please use our go back and use our page builder ( coming soon )</li>
-	        		    <li></li>
-	        		    <li></li>
-	        		</ul>
-	        		
-
-	        	</li>
-
-	        	<li></li>
-	    	</ul> 
-	    <li></li>
-	</ul>	
+	<% if @webpage.type.name == 'thing'%>
+		<%= render partial: 'thing_instructions_partial' %>
+	<% end %>
 </div>
-
